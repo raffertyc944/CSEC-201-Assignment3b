@@ -105,7 +105,7 @@ int __stdcall ExecuteCommand(
         puts("Invalid command.");
         return 1;
     }
-    strcpy(command, windows_verb);
+    strcpy(command, sizeof(command), windows_verb);
     for (i = 0; i < argc; ++i) {
         if (!safe_argument(args[i]) ||
             !append_token(command, sizeof(command), args[i])) {
