@@ -7,7 +7,8 @@
 #define MAX_LINE 1024
 #define MAX_ARGS 16
 
-__declspec(dllimport) int __cdecl ParseCommand(char *line, char *args[], int limit)
+//Changed from dllimport to dllexport
+__declspec(dllexport) int __cdecl ParseCommand(char *line, char *args[], int limit)
 {
     int count = 0;
     char *readp = line;
@@ -41,12 +42,12 @@ __declspec(dllimport) int __cdecl ParseCommand(char *line, char *args[], int lim
             return -1;
         *writep++ = '\0';
     }
-    return count;
-}
+    return count;S
 
-__declspec(dllimport) int __cdecl ParseCommand(char *line, char *args[], int limit);
+//Deleted dllimport function defined above
 
-__declspec(dllexport) static int approved_verb(const char *verb)
+//Didn't need the dllexport part of this function (its static)
+static int approved_verb(const char *verb)
 {
     static const char *const verbs[] = {
         "dir", "type", "copy", "move", "del", "mkdir", "rmdir", "echo"
